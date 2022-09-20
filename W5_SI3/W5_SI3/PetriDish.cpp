@@ -61,6 +61,8 @@ void PetriDish::isBacteriaAlive()
 	// nearby, xPosotion, yPosition
 	for (size_t xDish{ 0 }; xDish < dish.size(); xDish++) {
 		for (size_t yDish{ 0 }; yDish < dish.size(); yDish++) {
+
+			//COCCUS
 			if (dish[xDish][yDish]->getBacteriumSign() == 'C') {
 				int counter{ 0 };
 				if (isInRange(xDish - 1, yDish) &&
@@ -87,29 +89,157 @@ void PetriDish::isBacteriaAlive()
 				
 			}
 
-			// SPIRILLUM
+			 //SPIRILLUM
 			if (dish[xDish][yDish]->getBacteriumSign() == 'S') {
 				for (int i{ 1 }; i <= 2; i++) {
 					// sprawdzamy na lewo
 					if (isInRange(xDish - i, yDish) &&
 						dish[xDish - i][yDish]->getBacteriumSign() == 'B') {
 						dish[xDish][yDish]->setIsAlive(false);
-						break;
 					}
+					//sprawdzamy w prawo
 					if (isInRange(xDish + i, yDish) &&
-						dish[xDish - i][yDish]->getBacteriumSign() == 'B')
+						dish[xDish + i][yDish]->getBacteriumSign() == 'B') {
 						dish[xDish][yDish]->setIsAlive(false);
+					}
+					//sprawedzamy dol
+					if (isInRange(xDish, yDish + i) &&
+						dish[xDish][yDish + i]->getBacteriumSign() == 'B') {
+						dish[xDish][yDish]->setIsAlive(false);
+					}
+					//sprawedzamy gora
+					if (isInRange(xDish, yDish - i) &&
+						dish[xDish][yDish - i]->getBacteriumSign() == 'B') {
+						dish[xDish][yDish]->setIsAlive(false);
+					}
+				}
+				//przekatna lewa-dol
+				if (isInRange(xDish - 1, yDish + 1) &&
+					dish[xDish - 1][yDish + 1]->getBacteriumSign() == 'B') {
+					dish[xDish][yDish]->setIsAlive(false);
+				}
+				//przekatna prawa-dol
+				if (isInRange(xDish + 1, yDish + 1) &&
+					dish[xDish + 1][yDish + 1]->getBacteriumSign() == 'B') {
+					dish[xDish][yDish]->setIsAlive(false);
+				}
+				//przekatna prawa-gora
+				if (isInRange(xDish + 1, yDish - 1) &&
+					dish[xDish + 1][yDish - 1]->getBacteriumSign() == 'B') {
+					dish[xDish][yDish]->setIsAlive(false);
+				}
+				//przekatna lewa-gora
+				if (isInRange(xDish - 1, yDish - 1) &&
+					dish[xDish - 1][yDish - 1]->getBacteriumSign() == 'B') {
+					dish[xDish][yDish]->setIsAlive(false);
 				}
 			}
-		
+
+				//BACILLUS
+			if (dish[xDish][yDish]->getBacteriumSign() == 'B') {
+					for (int i{ 1 }; i <= 3; i++) {
+						if (isInRange(xDish - i, yDish) &&
+							dish[xDish - i][yDish]->getBacteriumSign() == 'C') {
+							dish[xDish][yDish]->setIsAlive(true);
+						}
+						else {
+							dish[xDish][yDish]->setIsAlive(false);
+						}
+						//sprawdzamy w prawo
+						if (isInRange(xDish + i, yDish) &&
+							dish[xDish + i][yDish]->getBacteriumSign() == 'C') {
+							dish[xDish][yDish]->setIsAlive(true);
+						}
+						else {
+							dish[xDish][yDish]->setIsAlive(false);
+						}
+						//sprawedzamy dol
+						if (isInRange(xDish, yDish + i) &&
+							dish[xDish][yDish + i]->getBacteriumSign() == 'C') {
+							dish[xDish][yDish]->setIsAlive(true);
+						}
+						else {
+							dish[xDish][yDish]->setIsAlive(false);
+						}
+						//sprawedzamy gora
+						if (isInRange(xDish, yDish - i) &&
+							dish[xDish][yDish - i]->getBacteriumSign() == 'C') {
+							dish[xDish][yDish]->setIsAlive(true);
+						}
+						else {
+							dish[xDish][yDish]->setIsAlive(false);
+						}
+					}
+
+					for (int i{ 1 }; i <= 2; i++) {
+
+						//przekatna lewa-dol
+						if (isInRange(xDish - i, yDish + i) &&
+							dish[xDish - i][yDish + i]->getBacteriumSign() == 'C') {
+							dish[xDish][yDish]->setIsAlive(true);
+						}
+						else {
+							dish[xDish][yDish]->setIsAlive(false);
+						}
+						//przekatna prawa-dol
+						if (isInRange(xDish + i, yDish + i) &&
+							dish[xDish + i][yDish + i]->getBacteriumSign() == 'C') {
+							dish[xDish][yDish]->setIsAlive(true);
+						}
+						else {
+							dish[xDish][yDish]->setIsAlive(false);
+						}
+						//przekatna prawa-gora
+						if (isInRange(xDish + i, yDish - i) &&
+							dish[xDish + i][yDish - i]->getBacteriumSign() == 'C') {
+							dish[xDish][yDish]->setIsAlive(true);
+						}
+						else {
+							dish[xDish][yDish]->setIsAlive(false);
+						}
+						//przekatna lewa-gora
+						if (isInRange(xDish - i, yDish - i) &&
+							dish[xDish - i][yDish - i]->getBacteriumSign() == 'C') {
+							dish[xDish][yDish]->setIsAlive(true);
+						}
+						else {
+							dish[xDish][yDish]->setIsAlive(false);
+						}
+					}
+				}
 		}
 	}
-
-
 }
 
 bool PetriDish::isInRange(int x, int y)
 {
 	if (x >= 0 && y >= 0 && x < dish.size() && y < dish.size()) return true;
 	else return false;
+}
+
+void PetriDish::clearDish()
+{
+	for (auto& k : dish) {
+		for (auto& e : k) {
+			if(e->getIsAlive() == false)
+				e = std::make_shared<Bacterium>();
+		}
+	}
+}
+
+void PetriDish::counterBacterial()
+{
+	for (auto& k : dish) {
+		for (auto& e : k) {
+			if (e->getBacteriumSign() == 'C')
+				coccus++;
+			else if (e->getBacteriumSign() == 'B')
+				bacillus++;
+			else if (e->getBacteriumSign() == 'S')
+				spirillum++;
+			else if (e->getBacteriumSign() == '.')
+				bacterium++;
+
+		}
+	}
 }

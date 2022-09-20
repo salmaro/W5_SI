@@ -10,6 +10,10 @@
 class PetriDish
 {
 private:
+	int bacillus{};
+	int spirillum{};
+	int coccus{};
+	int bacterium{};
 
 	std::vector<std::vector<std::shared_ptr<Bacterium>>> dish;
 public:
@@ -19,6 +23,8 @@ public:
 	void howManyBacterial();
 	void isBacteriaAlive();
 	bool isInRange(int x, int y);
+	void clearDish();
+	void counterBacterial();
 	
 };
 

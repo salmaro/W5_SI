@@ -24,6 +24,8 @@ int main() {
 	//talerz.howManyBacterial();
 	talerz.isBacteriaAlive();
 	talerz.displayDish();
+	talerz.clearDish();
+	talerz.counterBacterial();
 
 
 
