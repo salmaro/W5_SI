@@ -7,7 +7,6 @@ char Coccus::getBacteriumSign()
 
 bool Coccus::checkNearby()
 {
-    if(xPosition -1, yPosition)
     return false;
 }
 

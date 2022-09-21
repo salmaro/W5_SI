@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include "Bacterium.h"
 #include "Coccus.h"
 #include "Spirillum.h"
@@ -6,6 +7,7 @@
 #include <vector>
 #include <iostream>
 #include <memory>
+#include <utility>
 
 class PetriDish
 {
@@ -25,6 +27,8 @@ public:
 	bool isInRange(int x, int y);
 	void clearDish();
 	void counterBacterial();
-	
+	void printNumberOfBactirum();
+	void bacteriaPovielations();
+	int randonPositionNumber(size_t sizeOfVectorPairs);
+	void frankenstein();
 };
-
